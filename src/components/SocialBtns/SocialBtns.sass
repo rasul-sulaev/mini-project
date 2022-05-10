@@ -1,0 +1,77 @@
+.social-btns-list
+	display: flex
+	flex-wrap: wrap
+	grid-gap: 16px
+	.social-btn
+		width: 140px
+		height: 40px
+		display: grid
+		grid-template-columns: 40px auto
+		position: relative
+		color: #fff
+		background-color: var(--blue)
+		text-decoration: none
+		transition: all 200ms ease-in-out
+		overflow: hidden
+		&:before
+			content: ""
+			height: 40px
+			width: 40px
+			font-family: "FontAwesome"
+			display: flex
+			align-items: center
+			justify-content: center
+			background-color: #000
+		&:after
+			content: ""
+			position: absolute
+			top: 50%
+			left: 40px
+			transform: translateY(-50%)
+			border-bottom: 5px solid transparent
+			border-left: 5px solid #000
+			border-top: 5px solid transparent
+		.social-btn-title
+			width: 100%
+			height: 100%
+			font-weight: 500
+			letter-spacing: 0.5px
+			text-align: center
+			display: inline-flex
+			align-items: center
+			justify-content: center
+		&.soc-icon-fc
+			background-color: #39579A
+			&:before
+				content: '\f09a'
+				color: #3B5BA2
+			&:hover
+				background-color: #395088
+		&.soc-icon-tw
+			background-color: #9A9A9A
+			&:before
+				content: '\f099'
+				color: #50ABF1
+			&:hover
+				background-color: #949494
+		&.soc-icon-gp
+			background-color: #E04931
+			&:before
+				content: '\f0d5'
+				color: #CE1D22
+			&:hover
+				background-color: #E03B18
+		&.soc-icon-pin
+			background-color: #CE1D22
+			&:before
+				content: '\f0d2'
+				color: #fff
+			&:hover
+				background-color: #CE0609
+		&.soc-icon-in
+			background-color: #007AB8
+			&:before
+				content: '\f0e1'
+				color: #fff
+			&:hover
+				background-color: #0059B8

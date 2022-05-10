@@ -1,0 +1,24 @@
+.menu
+	display: flex
+	flex-direction: column
+	grid-gap: 1px
+	&__item
+		padding: 8px 15px
+		color: #fff
+		font-size: 13px
+		font-weight: 500
+		display: flex
+		align-items: center
+		grid-gap: 10px
+		text-decoration: none
+		transition: all 200ms ease-in-out
+		&:hover,
+		&.active
+			color: #fff
+			background-color: rgba(#01B0EF, 0.6)
+		.ant-badge
+			margin-left: auto !important
+			.ant-badge-count
+				height: 18px !important
+				min-width: 18px !important
+				line-height: 18px !important

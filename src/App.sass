@@ -1,0 +1,504 @@
+.App
+  width: 100%
+  position: relative
+  min-height: 100vh
+  display: flex
+	
+a
+	color: inherit
+	
+.container
+	margin: 0 auto
+	padding: 0 24px
+	height: 100%
+	max-width: 1144px
+	width: 100%
+	display: flex
+	flex-direction: column
+	box-sizing: border-box
+
+	
+main
+	flex-grow: 1
+	section
+		padding: 40px 0
+		&:last-of-type
+			padding-bottom: 100px
+		.header
+			margin-bottom: 20px
+			display: flex
+			align-items: baseline
+			flex-direction: column
+			grid-gap: 20px
+		h2.title
+		  margin: 20px 0
+		  font-size: 32px
+		
+				
+	
+.btn
+	padding: 8px 16px 10px
+	text-decoration: none
+	text-align: center
+	border: 1px solid transparent
+	display: flex
+	align-items: center
+	justify-content: center
+	grid-gap: 10px
+	background: none
+	transition: all 200ms ease-in-out
+	cursor: pointer
+	outline: none
+	&-preloader
+		width: 20px
+		height: 20px
+		display: block
+		border: 2px solid transparent
+		border-right-color: #fff
+		border-bottom-color: #fff
+		border-radius: 10px
+		
+		animation-name: preloaderImg
+		animation-duration: 750ms
+		animation-iteration-count: infinite
+		animation-timing-function: linear
+	&-blue
+		color: #fff
+		background-color: var(--darkBlue)
+		&:hover
+			color: var(--darkBlue)
+			border-color: var(--darkBlue)
+			background-color: transparent
+	&-red
+		color: #fff
+		border-color: var(--red)
+		background-color: var(--red)
+		&:hover
+			color: var(--red)
+			border-color: var(--red)
+			background-color: transparent
+	&-outline
+		&-blue
+			color: var(--darkBlue)
+			border-color: var(--darkBlue)
+			&:hover
+				color: #fff
+				background-color: var(--darkBlue)
+		&-red
+			color: var(--red)
+			border-color: var(--red)
+			&:hover
+				color: #fff
+				background-color: var(--red)
+				
+
+
+
+
+
+.form
+	padding: 10px
+	width: 240px
+	display: flex
+	align-items: flex-start
+	flex-direction: column
+	grid-gap: 10px
+	border: 1px solid #666
+	box-shadow: 0 0 5px 0 #999
+	background-color: #fff
+	backdrop-filter: blur(10)
+	box-sizing: border-box
+	&-control
+		width: 100%
+		text-align: left
+		input
+			padding: 0 10px
+			height: 44px
+			width: 100%
+			border: 1px solid #666
+			background-color: transparent
+			box-sizing: border-box
+			outline: none
+		textarea
+			padding: 10px
+			height: 100px
+			width: 100%
+			border: 1px solid #666
+			resize: vertical
+			box-sizing: border-box
+			outline: none
+		&_status-error
+			margin: 6px 0
+			color: var(--red)
+			font-size: 14px
+	.btn
+		width: 100%
+		height: 44px
+		transition: all 200ms ease-in-out
+		cursor: pointer
+
+
+
+.modal
+	min-height: 100vh
+	width: 100%
+	position: fixed
+	top: 0
+	left: 0
+	display: flex
+	align-items: center
+	justify-content: center
+	background-color: rgba(0,0,0, 0.5)
+	z-index: 1
+	&-close
+		width: 30px
+		height: 30px
+		position: absolute
+		top: 6px
+		right: 6px
+		color: #fff
+		font-size: 20px
+		border: none
+		border-radius: 6px
+		background-color: var(--red)
+		cursor: pointer
+	.form
+		width: 380px
+		position: relative
+		&-title
+			margin: 0 auto 12px
+			font-size: 26px
+			font-weight: 600
+			
+			
+			
+			
+.preloader
+	width: 100%
+	height: 100vh
+	position: fixed
+	top: 0
+	left: 0
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+	background-color: #F5F5F5
+	z-index: 1
+	transition: all 200ms ease-in-out
+	img
+		width: 200px
+		height: 200px
+		animation-name: preloaderImg
+		animation-duration: 1s
+		animation-iteration-count: infinite
+		animation-timing-function: linear
+	.title
+		margin: -20px 0 0
+		font-size: 32px
+		font-weight: 600
+		font-style: italic
+
+@keyframes preloaderImg
+	0%
+		transform: rotate(0deg)
+	100%
+		transform: rotate(360deg)
+		
+
+
+
+
+		
+		
+#post-page
+	display: grid
+	grid-template-columns: auto 1fr
+	grid-gap: 60px 100px
+	.left
+		.post
+			max-width: 991px
+			&-img
+				height: 400px
+				width: 100%
+				object-fit: cover
+				border-radius: 6px
+			&-title
+				font-size: 32px
+				&:hover
+					color: inherit
+			&-description
+				line-height: 1.6
+			&-footer
+				.btn
+					padding: 0
+					display: flex
+					align-items: center
+					grid-gap: 4px
+					border: none
+					border-radius: 4px 0 0 4px
+					transition: all 200ms ease-in-out
+					cursor: pointer
+	.right
+		.random
+			padding: 10px
+			box-sizing: border-box
+			border-radius: 6px
+			background-color: #fff
+			.header
+				text-align: center
+				align-items: center
+				h2.title
+					margin: 10px 0 0
+					border-bottom: 4px solid var(--blue)
+		.random-posts-list
+			display: grid
+			grid-template-columns: repeat(2, 1fr)
+			grid-gap: 10px
+			.post
+				grid-gap: 12px
+				&-img
+					width: 100%
+					height: 180px
+					object-fit: cover
+					border-radius: 6px
+				&-title
+					font-size: 16px
+					text-decoration: none
+					transition: all 200ms ease-in-out
+					&:hover
+						color: var(--darkBlue)
+				&-description
+					font-size: 14px
+				&-footer
+					.btn
+						padding: 0
+						display: flex
+						align-items: center
+						grid-gap: 4px
+						border: none
+						border-radius: 4px 0 0 4px
+						transition: all 200ms ease-in-out
+						cursor: pointer
+					
+					
+					
+					
+#page404
+	height: 100%
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+	background-image: url("assets/img/bg_.jpg")
+	.status-code
+		margin: 0
+		font-size: 200px
+		background: repeating-linear-gradient(transparent, transparent 3px, var(--red) 3px, var(--red) 6px), linear-gradient(90deg, rgba(#fff, 0.2), rgba(#D30054, 0.4), rgba(#fff, 0.2))
+		-webkit-background-clip: text
+		-webkit-text-fill-color: transparent
+		
+		animation-name: changeGradientColor
+		animation-duration: 2s
+		animation-iteration-count: infinite
+		animation-timing-function: ease-in-out
+	.status-text,
+	.failed
+		margin: 0
+		font-size: 36px
+		text-align: center
+		
+		
+		
+@keyframes changeGradientColor
+	0%
+		opacity: 1
+	50%
+		background: repeating-linear-gradient(transparent, transparent 3px, var(--blue) 3px, var(--blue) 6px), linear-gradient(90deg, rgba(#fff, 0.2), rgba(#046cd3, 0.4), rgba(#fff, 0.2))
+		-webkit-background-clip: text
+	100%
+		opacity: 1
+		
+		
+		
+// Созданный пост
+.created-post
+	width: calc(50% - 5px)
+	padding: 10px
+	display: grid
+	grid-template-columns: auto 1fr
+	grid-template-areas: "img title" "img description"
+	grid-template-rows: auto 1fr
+	grid-gap: 10px
+	background-color: #fff
+	box-sizing: border-box
+	&:hover
+		.title
+			color: var(--darkBlue)
+	img
+		width: 180px
+		height: 100%
+		grid-area: img
+		object-fit: cover
+	.title
+		margin: 0
+		font-size: 18px
+		grid-area: title
+		transition: all 200ms ease-in-out
+	.description
+		margin: 0
+		color: #535054
+		font-size: 13px
+		grid-area: description
+		
+#edit-post-page
+	padding: 0
+	display: grid
+	grid-template-columns: repeat(2, 1fr)
+	grid-gap: 10px
+	.post
+		&-img
+			height: 400px
+		&-title
+			font-size: 26px
+	.form
+		box-shadow: none
+		border: none
+		background-color: #fff
+		&-control
+			input
+				border: 1px solid #666
+				background-color: #fff
+			textarea
+				border: 1px solid #666
+				height: 300px !important
+		.ant-spin-nested-loading
+			width: 100%
+		.btns-block
+			width: 100%
+			display: flex
+			grid-gap: 10px
+			.btn
+				height: 46px
+				font-size: 14px
+				
+				
+				
+#login-page
+	height: 100%
+	.container
+		height: 100%
+		align-items: center
+		justify-content: center
+		text-align: center
+		.form
+			.ant-spin-nested-loading
+				width: 100%
+		
+
+
+
+// С Компонента Пост
+h2.title
+	margin-bottom: 16px
+	font-size: 32px
+.post
+	padding: 20px 16px
+	position: relative
+	display: flex
+	align-items: flex-start
+	flex-direction: column
+	grid-gap: 20px
+	box-sizing: border-box
+	background-color: #fff
+	&:hover
+		.post-btn-like
+			padding: 6px 20px 6px 12px
+	&-btn-like
+		span
+			padding-top: 2px
+	&-img
+		height: 400px
+		width: 100%
+		object-fit: cover
+	&-title
+		margin: 0
+		color: #19141B
+		font-size: 18px
+		font-weight: bold
+		text-decoration: none
+		display: inline-block
+		transition: all 200ms ease-in-out
+		&:hover
+			color: var(--darkBlue)
+	&-description
+		margin: 0
+		font-size: 15px
+	&-footer
+		margin-top: auto
+		width: 100%
+		display: flex
+		grid-gap: 20px 16px
+		align-items: stretch
+		.btn
+			padding: 0
+			display: flex
+			align-items: center
+			justify-content: center
+		.btn-like
+			display: flex
+			align-items: center
+			grid-gap: 4px
+			border: none
+			transition: all 200ms ease-in-out
+			cursor: pointer
+			&:hover
+				svg
+					transform: scale(1.15)
+			svg
+				transition: all 200ms ease-in-out
+		.btn-edit
+			margin-left: auto
+	
+
+.ant-notification-custom-for-image
+	.ant-notification-notice-with-icon
+		display: grid !important
+		grid-template-columns: auto 1fr !important
+		grid-template-rows: auto 1fr !important
+		grid-gap: 0 20px
+	.ant-notification-notice-icon
+		position: relative !important
+		grid-row: 1 / 3
+		img
+			width: 160px !important
+	.ant-notification-notice-message
+		margin-left: 0 !important
+		font-size: 16px !important
+		font-weight: 700 !important
+	.ant-notification-notice-description
+		margin-left: 0 !important
+		font-size: 12px !important
+
+
+
+.posts-list
+	display: flex
+	flex-direction: column
+	grid-gap: 12px
+	& > a
+		color: inherit
+		text-decoration: none
+	.post
+		padding: 20px 16px
+		&-img
+			height: 400px
+			
+			
+			
+			
+.account
+	.btns-block
+		width: 100%
+		display: flex
+		justify-content: space-between

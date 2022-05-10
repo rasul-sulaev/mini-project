@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+
+:root {
+    --red: #d30054;
+    --green: #82d9c8;
+    --blue: #01b0ef;
+    --darkBlue: #046cd3;
+}
+
+/* Custom ScrollBar for Webkit*/
+::-webkit-scrollbar-button {
+    background-repeat: no-repeat;
+    width: 0;
+    height: 0;
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #B8B8B8;
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #2c3e50;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #2c3e50;
+}
+::-webkit-resizer {
+    background-repeat: no-repeat;
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+body {
+  margin: 0;
+    color: #535054;
+  font-family: -apple-system, BlinkMacSystemFont, 'Fredoka', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F0F0F0;
+    line-height: 1.2;
+}
+
+* {
+    font-family: 'Fredoka', sans-serif;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: #19141B;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

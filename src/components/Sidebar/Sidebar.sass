@@ -1,0 +1,77 @@
+.sidebar
+	height: 100vh
+	width: 280px
+	position: sticky
+	top: 0
+	display: flex
+	flex-direction: column
+	font-family: 'Fredoka', sans-serif
+	background-color: #30393E
+	overflow: hidden
+	.user
+		padding: 30px 10px 20px
+		position: relative
+		color: #fff
+		text-align: center
+		background-size: cover
+		background-position: center
+		z-index: 1
+		&-img
+			width: 70px
+			height: 70px
+			border-radius: 50%
+			object-fit: cover
+			box-shadow: 0 0 5px 1px #ccc
+		&-name
+			margin: 10px 0 6px
+			font-size: 16px
+		&-status
+			margin: 0
+			color: #ccc
+			font-size: 12px
+		&-btns
+			position: absolute
+			top: 30px
+			right: 15px
+			
+			display: flex
+			flex-direction: column
+			grid-gap: 15px
+			.u-btn
+				padding: 0
+				border: none
+				background: transparent
+				
+				cursor: pointer
+				svg
+					//width: 15px
+					//height: 15px
+					transition: all 200ms ease-in-out
+				&.auth
+					&:hover
+						svg
+							fill: var(--blue) !important
+				&.exit
+					&:hover
+						svg
+							fill: var(--red)
+				&.settings
+					&:hover
+						svg
+							fill: gold
+							transform: rotate(90deg)
+	&-container
+		padding: 15px 15px 20px
+		height: 100%
+		display: flex
+		flex-direction: column
+		grid-gap: 20px
+		background-size: cover
+		background-position: center
+		
+		.btn-exit
+			margin-top: auto
+	&__widget
+		&#menu
+			margin-left: -15px
+			width: calc(100% + 30px)

@@ -1,0 +1,38 @@
+.post-page
+	.btn
+		margin: 20px 0
+	.content
+		display: grid
+		grid-template-columns: 1fr 300px
+		grid-gap: 16px
+		.sidebar-right
+			display: flex
+			flex-direction: column
+			.widgets
+				position: sticky
+				top: 72px
+				display: flex
+				flex-direction: column
+				grid-gap: 12px
+				.widget
+					padding: 20px 16px
+					background: #fff
+					&-title
+						margin-bottom: 30px
+						padding-bottom: 10px
+						font-size: 18px
+						font-weight: 700
+						border-bottom: 1px solid #535054
+					&-random-posts
+						.post + .post
+							margin-top: 20px
+						.post
+							padding: 0
+							grid-gap: 10px
+							&-img
+								height: 100px
+							&-title
+								font-size: 14px
+							&-footer
+								.btn
+									margin: 0
