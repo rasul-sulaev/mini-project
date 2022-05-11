@@ -105,6 +105,32 @@ export const editPost = createAsyncThunk(
 )
 
 
+
+export const likePost = createAsyncThunk(
+  'posts/likePost',
+  async ({post, favorites}) => {
+
+    try {
+      const response = await fetch(POSTS_URL + post.id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(post)
+      })
+
+      if (response.ok) {
+        return post;
+      } else {
+        throw new Error('Ошибка при редактировании поста');
+      }
+    } catch (err) {
+      console.log(err);
+      throw new Error('Ошибка при редактировании поста (API хост некорректен)');
+    }
+  }
+)
+
 export const createPost = createAsyncThunk(
   'posts/createPost',
   async (newPost) => {
@@ -133,17 +159,22 @@ export const createPost = createAsyncThunk(
 const postsSlice = createSlice({
   name: 'posts',
   initialState: {
-    data: [],
+    data: [], // массив постов
     selectPost: {}, // выбранный пост (один пост)
     isLoading: false, // Загрузка при API запросов (Используется для основного Preloader'а)
     error: null, // Ошибка
     secondLoading: '', // Дополнительная загрузка
-    userPosts: [],
+    userPosts: [], // Личные посты пользователя
+    favorites: JSON.parse(localStorage.getItem('favoritesPosts')) || [],
   },
   reducers: {
     setPosts: (state, action) => {
       state.data = action.payload;
-    }
+    },
+    // setFavorites: (state, action) => {
+    //   state.favorites = action.payload;
+    //   localStorage.setItem('favoritesPosts', JSON.stringify(state.favorites));
+    // }
   },
   extraReducers: builder => {
     builder
@@ -188,6 +219,23 @@ const postsSlice = createSlice({
       // })
 
 
+      .addCase(likePost.pending, (state, action) => {
+        state.favorites = action.meta.arg.favorites;
+        localStorage.setItem('favoritesPosts', JSON.stringify(action.meta.arg.favorites));
+
+        state.data = state.data.map(post => {
+          if (post.id === action.meta.arg.post.id) return action.meta.arg.post
+          return post
+        })
+
+        if (state.userPosts.some(post => post.id === action.meta.arg.post.id)) {
+          state.userPosts = state.userPosts.map(post => {
+            if (post.id === action.meta.arg.post.id) return action.meta.arg.post
+            return post
+          })
+        }
+      })
+
 
       .addCase(fetchPost.pending, (state, action) => {
         state.isLoading = true;
@@ -228,7 +276,7 @@ const postsSlice = createSlice({
 })
 
 
-export const {setPosts} = postsSlice.actions;
+export const {setPosts, setFavorites} = postsSlice.actions;
 export default postsSlice.reducer;
 
 export const selectPosts = (state => state.posts);

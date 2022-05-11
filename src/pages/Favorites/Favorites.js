@@ -6,7 +6,7 @@ import {useTitle} from "../../utils/hooks";
 import {Page404} from "../Page404/Page404";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPosts, selectPosts} from "../../store/slices/posts";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {handleLikePost} from "../../utils/functions";
 
 export const Favorites = () => {
@@ -14,12 +14,22 @@ export const Favorites = () => {
   useTitle('Избранные');
 
   const dispatch = useDispatch();
-  const {data: posts, isLoading, error} = useSelector(selectPosts);
+  const {data: posts, isLoading, error, favorites} = useSelector(selectPosts);
+
+  // Стейт с Избранными постами
+  const [favoritesPosts, setFavoritesPosts] = useState([]);
+
+
+  useEffect(() => {
+    setFavoritesPosts(
+      posts?.filter((post) => favorites?.includes(post.id))
+    )
+  }, [posts])
 
 
   useEffect(() => {
     dispatch(fetchPosts());
-  }, [dispatch]);
+  }, [dispatch])
 
 
   /** При наличии ошибки от Сервера вернуть 404 страницу **/
@@ -36,19 +46,21 @@ export const Favorites = () => {
       <section>
         <div className="header" style={{ flexDirection: 'row' }}>
           <h2 className="title">Избранные</h2>
+          <p>
+            {favoritesPosts?.length}
+          </p>
         </div>
         <div className="posts-list">
-          {posts?.map((post) => {
-            if (post.liked) return <Post
+          {favoritesPosts?.map((post) => {
+            return <Post
               key={post.id}
               id={post.id}
               image={post.image}
               imageAlt={post.imageAlt}
               title={<Link className="post-title" to={`/post/${post.id}`}>{post.title}</Link>}
               description={post.description.length > 150 ? post.description.slice(0, 150) + '...' : post.description}
-              liked={post.liked}
-              likes={post.likes}
-              likePost={() => handleLikePost(dispatch, post)}
+              liked={true}
+              likePost={() => handleLikePost(dispatch, post, favorites)}
             />
           })}
         </div>

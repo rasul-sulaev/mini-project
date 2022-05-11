@@ -21,7 +21,7 @@ export const MyPosts = () => {
 
   /** Получение постов из Redux **/
   const dispatch = useDispatch();
-  const {userPosts, isLoading, error, secondLoading} = useSelector(selectPosts);
+  const {userPosts, isLoading, error, secondLoading, favorites} = useSelector(selectPosts);
 
   /** Получение пользователя из Redux **/
   const user = useSelector(selectUser);
@@ -69,10 +69,10 @@ export const MyPosts = () => {
                 title={<Link className="post-title" to={`/post/${post.id}`} >{post.title}</Link>}
                 description={post.description.length > 400 ? post.description.slice(0, 400) + '...' : post.description}
                 likes={post.likes}
-                liked={post.liked}
-                likePost={() => handleLikePost(dispatch, post)}
-                editPost={`/post/${post.id}/edit`}
-                deletePost={() => handleDeletePost(post, setDeletePostData)}
+                liked={favorites.some(favoritePostId => favoritePostId === post.id)}
+                likePost={() => handleLikePost(dispatch, post, favorites)}
+                // editPost={`/post/${post.id}/edit`}
+                // deletePost={() => handleDeletePost(post, setDeletePostData)}
               />
             })}
           </div>

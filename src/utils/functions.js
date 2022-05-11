@@ -1,15 +1,28 @@
-import {editPost} from "../store/slices/posts";
-
+import {likePost} from "../store/slices/posts";
 
 // Событие на нажатие кнопки Лайк
-export const handleLikePost = (dispatch, post) => {
-  const updatedPost = {
-    ...post,
-    liked: !post.liked,
-    likes: post.liked ? post.likes - 1 : post.likes + 1
-  }
+export const handleLikePost = (dispatch, post, favorites) => {
+  if (favorites.some(favoritePostId => favoritePostId === post.id )) {
+    const updatedPost = {
+      ...post,
+      likes: post.likes - 1
+    }
 
-  dispatch(editPost(updatedPost));
+    dispatch(likePost({
+      post: updatedPost,
+      favorites: favorites.filter(favoritePostId => favoritePostId !== post.id)
+    }));
+  } else {
+    const updatedPost = {
+      ...post,
+      likes: post.likes + 1
+    }
+
+    dispatch(likePost({
+      post: updatedPost,
+      favorites: [...favorites, post.id]
+    }));
+  }
 }
 
 
@@ -20,6 +33,3 @@ export const handleDeletePost = (post, setDeletePostData) => {
     post: post,
   });
 }
-
-
-

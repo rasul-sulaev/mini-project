@@ -14,17 +14,16 @@ export const PostPage = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const {data: posts, error, isLoading} = useSelector(selectPosts);
+  const {data: posts, error, isLoading, favorites} = useSelector(selectPosts);
 
 
   const [randPosts, setRandPosts] = useState([]);
-
 
   if ((posts.length && !randPosts.length)) {
     setRandPosts(
       posts.filter(post => post.id !== id).sort(() => Math.random() - 0.5).slice(0, 4)
     )
-  } else if (randPosts.filter(post => post.id === id).length) {
+  } else if (randPosts.some(post => post.id === id)) {
     setRandPosts(
       posts.filter(post => post.id !== id).sort(() => Math.random() - 0.5).slice(0, 4)
     )
@@ -66,9 +65,9 @@ export const PostPage = () => {
                 imageAlt={post.imageAlt}
                 title={post.title}
                 description={post.description}
-                liked={post.liked}
+                liked={favorites.some(favoritePostId => favoritePostId === post.id)}
                 likes={post.likes}
-                likePost={() => handleLikePost(dispatch, post)}
+                likePost={() => handleLikePost(dispatch, post, favorites)}
               />
             })}
             <section>

@@ -16,7 +16,7 @@ export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
-  const {data: posts} = useSelector(selectPosts);
+  const {data: posts, favorites} = useSelector(selectPosts);
   const user = useSelector(selectUser);
 
   const myPostsCounter = posts?.filter(post => post.userId === user?.id)
@@ -56,7 +56,7 @@ export const Navigation = () => {
         <Badge
           style={{ backgroundColor: 'rgba(200,200,200, .25)' }}
           overflowCount={99}
-          count={favoritesPostsCounter?.length}
+          count={favorites?.length}
         />
       </NavLink>
       <NavLink className="menu__item" to="settings">

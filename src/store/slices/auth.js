@@ -1,14 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-// export const fetchUserPosts =
-
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isLoggedIn: false || JSON.parse(localStorage.getItem('isLoggedIn')),
     user: null || JSON.parse(localStorage.getItem('user')),
-    favorites: [], // Избранные
-    userPosts: [],
   },
   reducers: {
     logIn: (state, action) => {

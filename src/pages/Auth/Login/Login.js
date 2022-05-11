@@ -27,10 +27,8 @@ export const Login = () => {
       .then((action) => {
         let user = action.payload;
         if (user) {
-          user = user[0];
-
-          if (user.password === password.value) {
-            dispatch(logIn(user))
+          if (user.some(user => user.password === password.value)) {
+            dispatch(logIn(user[0]))
           } else {
             message.error('Пароль не верный!')
           }

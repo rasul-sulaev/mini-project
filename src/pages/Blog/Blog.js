@@ -16,7 +16,7 @@ export const Blog = () => {
 
   /** Получение постов из Redux **/
   const dispatch = useDispatch();
-  const {data: posts, isLoading, error} = useSelector(selectPosts);
+  const {data: posts, isLoading, favorites, error} = useSelector(selectPosts);
 
 
   useEffect(() => {
@@ -45,8 +45,8 @@ export const Blog = () => {
                 title={<Link className="post-title" to={`/post/${post.id}`} >{post.title}</Link>}
                 description={post.description.length > 400 ? post.description.slice(0, 400) + '...' : post.description}
                 likes={post.likes}
-                liked={post.liked}
-                likePost={() => handleLikePost(dispatch, post)}
+                liked={favorites.some(favoritePostId => favoritePostId === post.id)}
+                likePost={() => handleLikePost(dispatch, post, favorites)}
               />
             })}
           </div>
