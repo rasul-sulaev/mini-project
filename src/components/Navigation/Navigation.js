@@ -9,24 +9,18 @@ import {ReactComponent as IconBlogPen} from "../../assets/img/icons/blog-create-
 import {useDispatch, useSelector} from "react-redux";
 import {selectIsLoggedIn, selectUser} from "../../store/slices/auth";
 import {useEffect} from "react";
-import {fetchPosts, selectPosts} from "../../store/slices/posts";
+import {fetchUserPosts, selectPosts} from "../../store/slices/posts";
 import {Badge} from "antd";
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
-  const {data: posts, favorites} = useSelector(selectPosts);
+  const {favorites, userPosts} = useSelector(selectPosts);
   const user = useSelector(selectUser);
 
-  const myPostsCounter = posts?.filter(post => post.userId === user?.id)
-  const favoritesPostsCounter = posts?.filter(post => post.liked === true)
-
-
   useEffect(() => {
-    if (!posts.length) {
-      dispatch(fetchPosts());
-    }
+    dispatch(fetchUserPosts(user.id));
   }, [dispatch])
 
   return (
@@ -46,7 +40,7 @@ export const Navigation = () => {
           <Badge
             style={{ backgroundColor: 'rgba(200,200,200, .25)' }}
             overflowCount={99}
-            count={myPostsCounter?.length}
+            count={userPosts?.length}
           />
         </NavLink>
       )}

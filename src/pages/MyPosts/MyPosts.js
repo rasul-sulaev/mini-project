@@ -71,8 +71,8 @@ export const MyPosts = () => {
                 likes={post.likes}
                 liked={favorites.some(favoritePostId => favoritePostId === post.id)}
                 likePost={() => handleLikePost(dispatch, post, favorites)}
-                // editPost={`/post/${post.id}/edit`}
-                // deletePost={() => handleDeletePost(post, setDeletePostData)}
+                editPost={`/post/${post.id}/edit`}
+                deletePost={() => handleDeletePost(post, setDeletePostData)}
               />
             })}
           </div>
