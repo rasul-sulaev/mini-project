@@ -170,11 +170,7 @@ const postsSlice = createSlice({
   reducers: {
     setPosts: (state, action) => {
       state.data = action.payload;
-    },
-    // setFavorites: (state, action) => {
-    //   state.favorites = action.payload;
-    //   localStorage.setItem('favoritesPosts', JSON.stringify(state.favorites));
-    // }
+    }
   },
   extraReducers: builder => {
     builder
@@ -269,14 +265,13 @@ const postsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchUserPosts.rejected, (state, action) => {
-        // state.data = [];
         state.isLoading = false;
       })
   }
 })
 
 
-export const {setPosts, setFavorites} = postsSlice.actions;
+export const {setPosts} = postsSlice.actions;
 export default postsSlice.reducer;
 
 export const selectPosts = (state => state.posts);

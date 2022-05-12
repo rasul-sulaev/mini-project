@@ -4,7 +4,7 @@ import {Preloader} from "../../../components/Preloader/Preloader";
 import {SocialBtns} from "../../../components/SocialBtns/SocialBtns";
 import {Page404} from "../../Page404/Page404";
 import {useDispatch, useSelector} from "react-redux";
-import {selectPosts, fetchPosts, fetchPost} from "../../../store/slices/posts";
+import {selectPosts, fetchPosts} from "../../../store/slices/posts";
 import {useEffect, useState} from "react";
 import "./PostPage.sass";
 import {handleLikePost} from "../../../utils/functions";
