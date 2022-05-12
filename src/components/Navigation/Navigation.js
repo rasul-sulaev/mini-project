@@ -20,7 +20,9 @@ export const Navigation = () => {
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    dispatch(fetchUserPosts(user.id));
+    if (user !== null) {
+      dispatch(fetchUserPosts(user.id));
+    }
   }, [dispatch])
 
   return (
