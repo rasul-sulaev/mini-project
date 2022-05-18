@@ -1,6 +1,5 @@
 import './Navigation.sass';
 import {NavLink} from "react-router-dom";
-
 import {ReactComponent as IconHome} from "../../assets/img/icons/home.svg"
 import {ReactComponent as IconBlog} from "../../assets/img/icons/blog.svg"
 import {ReactComponent as IconHeart} from "../../assets/img/icons/heart-plain.svg"
@@ -9,19 +8,22 @@ import {ReactComponent as IconBlogPen} from "../../assets/img/icons/blog-create-
 import {useDispatch, useSelector} from "react-redux";
 import {selectIsLoggedIn, selectUser} from "../../store/slices/auth";
 import {useEffect} from "react";
-import {fetchUserPosts, selectPosts} from "../../store/slices/posts";
+import {fetchPosts, selectPosts} from "../../store/slices/posts";
 import {Badge} from "antd";
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
-  const {favorites, userPosts} = useSelector(selectPosts);
+  const {data: posts, favorites} = useSelector(selectPosts);
   const user = useSelector(selectUser);
 
+  /** Посты пользователя **/
+  const userPosts = posts.filter(post => post.userId === user?.id);
+
   useEffect(() => {
-    if (user !== null) {
-      dispatch(fetchUserPosts(user.id));
+    if (posts !== null) {
+      dispatch(fetchPosts())
     }
   }, [dispatch])
 

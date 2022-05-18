@@ -4,15 +4,13 @@ import {Preloader} from "../../components/Preloader/Preloader";
 import {Link} from "react-router-dom";
 import {useTitle} from "../../utils/hooks";
 import {useDispatch, useSelector} from "react-redux";
-import {
-  selectPosts,
-  fetchUserPosts
-} from "../../store/slices/posts";
+import {selectPosts, fetchPosts} from "../../store/slices/posts";
 import {useEffect, useReducer} from "react";
 import {Page404} from "../Page404/Page404";
 import {selectUser} from "../../store/slices/auth";
 import {handleDeletePost, handleLikePost} from "../../utils/functions";
 import {ModalDeletePost} from "../../components/ModalDeletePost/ModalDeletePost";
+import {Modal} from "antd";
 
 export const MyPosts = () => {
   /** Указываю название страницы в document.title **/
@@ -21,13 +19,16 @@ export const MyPosts = () => {
 
   /** Получение постов из Redux **/
   const dispatch = useDispatch();
-  const {userPosts, isLoading, error, secondLoading, favorites} = useSelector(selectPosts);
+  const {data: posts, isLoading, error, secondLoading, favorites} = useSelector(selectPosts);
 
   /** Получение пользователя из Redux **/
   const user = useSelector(selectUser);
 
+  /** Посты пользователя **/
+  const userPosts = posts.filter(post => post.userId === user.id);
+
   useEffect(() => {
-    dispatch(fetchUserPosts(user.id));
+    dispatch(fetchPosts());
   }, [dispatch]);
 
 
@@ -38,7 +39,6 @@ export const MyPosts = () => {
     showModal: false,
     post: {},
   })
-
 
 
   /** При наличии ошибки от Сервера вернуть 404 страницу **/

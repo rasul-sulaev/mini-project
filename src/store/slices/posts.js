@@ -39,25 +39,6 @@ export const fetchPost = createAsyncThunk(
 );
 
 
-export const fetchUserPosts = createAsyncThunk(
-  'posts/fetchUserPosts',
-  async (userId) => {
-    try {
-      const response = await fetch(POSTS_URL + `?userId=${userId}`)
-
-      if (response.ok) {
-        return await response.json();
-      }
-      else {
-        throw new Error('Ошибка при поступлении постов');
-      }
-    } catch (err) {
-      throw new Error('Ошибка при поступлении постов (API хост некорректен)');
-    }
-  }
-);
-
-
 export const deletePost = createAsyncThunk(
   'posts/deletePosts',
   async (postId) => {
@@ -164,7 +145,6 @@ const postsSlice = createSlice({
     isLoading: false, // Загрузка при API запросов (Используется для основного Preloader'а)
     error: null, // Ошибка
     secondLoading: '', // Дополнительная загрузка
-    userPosts: [], // Личные посты пользователя
     favorites: JSON.parse(localStorage.getItem('favoritesPosts')) || [],
   },
   reducers: {
@@ -192,7 +172,6 @@ const postsSlice = createSlice({
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         state.data = state.data.filter(post => post.id !== action.payload.id);
-        state.userPosts = state.userPosts.filter(post => post.id !== action.payload.id);
         state.secondLoading = 'fulfilled-deletePost';
       })
       .addCase(deletePost.rejected, (state, action) => {
@@ -223,13 +202,6 @@ const postsSlice = createSlice({
           if (post.id === action.meta.arg.post.id) return action.meta.arg.post
           return post
         })
-
-        if (state.userPosts.some(post => post.id === action.meta.arg.post.id)) {
-          state.userPosts = state.userPosts.map(post => {
-            if (post.id === action.meta.arg.post.id) return action.meta.arg.post
-            return post
-          })
-        }
       })
 
 
@@ -251,21 +223,8 @@ const postsSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.data = [...state.data, action.payload];
-        state.userPosts = [...state.userPosts, action.payload];
         state.selectPost = action.payload;
         state.secondLoading = 'fulfilled-createPost';
-      })
-
-
-      .addCase(fetchUserPosts.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchUserPosts.fulfilled, (state, action) => {
-        state.userPosts = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(fetchUserPosts.rejected, (state, action) => {
-        state.isLoading = false;
       })
   }
 })

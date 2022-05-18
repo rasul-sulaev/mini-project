@@ -45,10 +45,7 @@ export const Favorites = () => {
       />
       <section>
         <div className="header" style={{ flexDirection: 'row' }}>
-          <h2 className="title">Избранные</h2>
-          <p>
-            {favoritesPosts?.length}
-          </p>
+          <h2 className="title">Избранные <span style={{ fontSize: 16, fontWeight: 'normal' }}>(Найдено <span style={{ fontWeight: 'bold' }}>{favoritesPosts?.length}</span> шт.)</span></h2>
         </div>
         <div className="posts-list">
           {favoritesPosts?.map((post) => {
