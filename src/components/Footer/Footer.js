@@ -18,7 +18,10 @@ export const Footer = () => {
                 {isLoggedIn ? (
                   <>
                     <li><Link to="/my-posts">Мои посты</Link></li>
-                    <li><a onClick={() => dispatch(logOut())}>Выйти</a></li>
+                    {/*<li><a href="#" onClick={() => dispatch(logOut())}>Выйти</a></li>*/}
+                    <li>
+                      <button className="link" onClick={() => dispatch(logOut)}>Выйти</button>
+                    </li>
                   </>
                 ) : (
                   <>

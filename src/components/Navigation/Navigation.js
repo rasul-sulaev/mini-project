@@ -22,10 +22,8 @@ export const Navigation = () => {
   const userPosts = posts.filter(post => post.userId === user?.id);
 
   useEffect(() => {
-    if (posts !== null) {
-      dispatch(fetchPosts())
-    }
-  }, [])
+    dispatch(fetchPosts())
+  }, [dispatch])
 
   return (
     <nav className="menu">
