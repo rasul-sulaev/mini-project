@@ -10,7 +10,6 @@ import {Page404} from "../Page404/Page404";
 import {selectUser} from "../../store/slices/auth";
 import {handleDeletePost, handleLikePost} from "../../utils/functions";
 import {ModalDeletePost} from "../../components/ModalDeletePost/ModalDeletePost";
-import {Modal} from "antd";
 
 export const MyPosts = () => {
   /** Указываю название страницы в document.title **/

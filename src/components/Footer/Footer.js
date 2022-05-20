@@ -71,10 +71,10 @@ export const Footer = () => {
         <div className="container">
           <p className="footer-bottom__copy">Copyright &copy; {new Date().getFullYear()}</p>
           <div className="footer-bottom__soc-list">
-            <a className="soc-icon soc-icon-github" href="https://github.com/rasul_sulaev" target="_blank" title="Instagram"></a>
-            <a className="soc-icon soc-icon-tg" href="https://t.me/Rasul_Mountain" target="_blank" title="Telegram"></a>
-            <a className="soc-icon soc-icon-vk" href="https://vk.com/rasul_sulaev" target="_blank" title="Vkontakte"></a>
-            <a className="soc-icon soc-icon-inst" href="https://instagram.com/rasul_sulaev" target="_blank" title="Instagram"></a>
+            <a className="soc-icon soc-icon-github" href="https://github.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Instagram"></a>
+            <a className="soc-icon soc-icon-tg" href="https://t.me/Rasul_Mountain" target="_blank" rel="noreferrer" title="Telegram"></a>
+            <a className="soc-icon soc-icon-vk" href="https://vk.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Vkontakte"></a>
+            <a className="soc-icon soc-icon-inst" href="https://instagram.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Instagram"></a>
           </div>
         </div>
       </div>

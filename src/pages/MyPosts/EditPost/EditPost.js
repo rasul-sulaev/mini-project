@@ -26,7 +26,7 @@ export const EditPost = () => {
 
   useEffect(() => {
     dispatch(fetchPost(id));
-  }, [dispatch])
+  }, [dispatch, id])
 
 
   // Управляемый компонент для полей ввода
@@ -48,7 +48,7 @@ export const EditPost = () => {
       title: post.title,
       description: post.description,
     });
-  }, [post.image, post.imageAlt, post.title, post.description]);
+  }, [post]);
 
 
   /** Событие кнопки Изменить пост **/

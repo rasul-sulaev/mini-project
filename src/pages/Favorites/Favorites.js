@@ -14,22 +14,22 @@ export const Favorites = () => {
   useTitle('Избранные');
 
   const dispatch = useDispatch();
-  const {data: posts, isLoading, error, favorites} = useSelector(selectPosts);
+  const {isLoading, error, favorites} = useSelector(selectPosts);
 
   // Стейт с Избранными постами
   const [favoritesPosts, setFavoritesPosts] = useState([]);
 
 
   useEffect(() => {
-    setFavoritesPosts(
-      posts?.filter((post) => favorites?.includes(post.id))
-    )
-  }, [posts])
+    dispatch(fetchPosts())
+      .then((action) => {
+        const posts = action.payload;
 
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch])
+        setFavoritesPosts(
+          posts?.filter((post) => favorites?.includes(post.id))
+        )
+      })
+  }, [dispatch, favorites])
 
 
   /** При наличии ошибки от Сервера вернуть 404 страницу **/
