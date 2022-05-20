@@ -18,7 +18,6 @@ export const Footer = () => {
                 {isLoggedIn ? (
                   <>
                     <li><Link to="/my-posts">Мои посты</Link></li>
-                    {/*<li><a href="#" onClick={() => dispatch(logOut())}>Выйти</a></li>*/}
                     <li>
                       <button className="link" onClick={() => dispatch(logOut)}>Выйти</button>
                     </li>
@@ -74,10 +73,10 @@ export const Footer = () => {
         <div className="container">
           <p className="footer-bottom__copy">Copyright &copy; {new Date().getFullYear()}</p>
           <div className="footer-bottom__soc-list">
-            {/*<a className="soc-icon soc-icon-github" href="https://github.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Instagram"></a>*/}
-            {/*<a className="soc-icon soc-icon-tg" href="https://t.me/Rasul_Mountain" target="_blank" rel="noreferrer" title="Telegram"></a>*/}
-            {/*<a className="soc-icon soc-icon-vk" href="https://vk.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Vkontakte"></a>*/}
-            {/*<a className="soc-icon soc-icon-inst" href="https://instagram.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Instagram"></a>*/}
+            <a className="soc-icon soc-icon-github" href="https://github.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Instagram">&nbsp;</a>
+            <a className="soc-icon soc-icon-tg" href="https://t.me/Rasul_Mountain" target="_blank" rel="noreferrer" title="Telegram">&nbsp;</a>
+            <a className="soc-icon soc-icon-vk" href="https://vk.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Vkontakte">&nbsp;</a>
+            <a className="soc-icon soc-icon-inst" href="https://instagram.com/rasul_sulaev" target="_blank" rel="noreferrer" title="Instagram">&nbsp;</a>
           </div>
         </div>
       </div>
