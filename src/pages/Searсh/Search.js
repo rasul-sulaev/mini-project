@@ -54,7 +54,7 @@ export const Search = () => {
           )
         })
     }
-  }, [searchParams])
+  }, [dispatch, searchParams, postQuery])
 
   return (
     <Preloader isLoading={isLoading}>

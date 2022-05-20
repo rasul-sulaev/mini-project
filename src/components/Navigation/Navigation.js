@@ -25,7 +25,7 @@ export const Navigation = () => {
     if (posts !== null) {
       dispatch(fetchPosts())
     }
-  }, [dispatch])
+  }, [])
 
   return (
     <nav className="menu">
